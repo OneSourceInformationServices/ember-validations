@@ -1,3 +1,4 @@
+/*global QUnit */
 import Ember from 'ember';
 import { test } from 'ember-qunit';
 
@@ -8,7 +9,7 @@ function validateValues(object, propertyName, values, isTestForValid) {
   var validatedValues = [];
 
   values.forEach(function(value) {
-    function handleValidation(errors) {
+    function handleValidation() {
       var hasErrors = object.get('errors.' + propertyName + '.firstObject');
       if ((hasErrors && !isTestForValid) || (!hasErrors && isTestForValid)) {
         validatedValues.push(value);
