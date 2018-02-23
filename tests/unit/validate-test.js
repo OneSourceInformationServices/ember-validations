@@ -112,7 +112,7 @@ if (ObjectController) {
 
     this.registry.register('controller:user', Controller);
 
-    run(() => controller = this.container.lookupFactory('controller:user').create());
+    run(() => controller = Ember.getOwner(this).lookupFactory('controller:user').create());
     assert.equal(get(controller, 'isValid'), false);
 
     user = EmberObject.create();
@@ -154,7 +154,7 @@ if (ObjectController && ArrayController) {
 
     this.registry.register('controller:list', Controller);
 
-    run(() => controller = this.container.lookupFactory('controller:list').create());
+    run(() => controller = Ember.getOwner(this).lookupFactory('controller:list').create());
 
     assert.equal(get(controller, 'isValid'), true);
 

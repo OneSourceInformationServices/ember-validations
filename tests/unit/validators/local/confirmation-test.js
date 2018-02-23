@@ -80,7 +80,7 @@ test('when options is true', function(assert) {
 
 test('message integration on model, prints message on Confirmation property', function(assert) {
   let otherModel;
-  let OtherModel = this.container.lookupFactory('object:model').extend({
+  let OtherModel = Ember.getOwner(this).lookupFactory('object:model').extend({
     validations: {
       attribute: {
         confirmation: true
@@ -90,7 +90,7 @@ test('message integration on model, prints message on Confirmation property', fu
 
   this.registry.register('model:other', OtherModel);
 
-  run(() => otherModel = this.container.lookupFactory('model:other').create());
+  run(() => otherModel = Ember.getOwner(this).lookupFactory('model:other').create());
   run(() => set(otherModel, 'attribute', 'test'));
 
   assert.deepEqual(get(otherModel, 'errors.attributeConfirmation'), ["doesn't match attribute"]);
