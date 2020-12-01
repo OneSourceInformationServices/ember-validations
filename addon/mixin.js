@@ -1,10 +1,10 @@
 import Ember from 'ember';
-import Errors from 'ember-validations/errors';
 import Base from 'ember-validations/validators/base';
 
 const {
   A: emberArray,
   ArrayProxy,
+  Object: EmberObject,
   Mixin,
   RSVP: { all, reject },
   computed,
@@ -106,7 +106,7 @@ export default Mixin.create(setValidityMixin, {
 
   init() {
     this._super(...arguments);
-    this.errors = Errors.create();
+    this.errors = EmberObject.create();
     this.dependentValidationKeys = {};
     this.validators = emberArray();
 
